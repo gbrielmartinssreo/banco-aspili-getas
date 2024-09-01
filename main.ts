@@ -4,7 +4,7 @@ import { Gerente } from "./gerente";
 import { PF } from "./pf";
 import { PJ } from "./pj";
 import promptSync from 'prompt-sync'; // importa um módulo que captura entradas do usuário
-
+//ralemoslares
 const prompt = promptSync(); // cria uma instância do prompt-sync
 
 // Criação de contas
