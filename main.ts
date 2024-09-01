@@ -36,10 +36,10 @@ gerente2.addConta(contaPJ1); // Adiciona a conta PJ para o gerente
 
 // Instanciação dos objetos para a simulação
 
-    const contas: { [numeroConta: number]: Conta } = {
-        1: contaPF1,
-        2: contaPJ1
-    }
+const contas: { [numeroConta: number]: Conta } = {
+    1: contaPF1,
+    2: contaPJ1
+}
 
 
 
@@ -77,90 +77,96 @@ function loginGerente(): void {
 }
 
 function menuCliente(conta: Conta): void {
-    console.log("Menu Cliente:");
-    console.log("1 - Consultar saldo");
-    console.log("2 - Realizar saque");
-    console.log("3 - Realizar depósito");
-    console.log("4 - Ver extratos");
-    console.log("0 - Sair");
+    while (true) {
+        console.log("Menu Cliente:");
+        console.log("1 - Consultar saldo");
+        console.log("2 - Realizar saque");
+        console.log("3 - Realizar depósito");
+        console.log("4 - Ver extratos");
+        console.log("0 - Sair");
 
-    const escolha = +prompt("Digite a opção desejada: ");
+        const escolha = +prompt("Digite a opção desejada: ");
 
-    switch (escolha) {
-        case 1:
-            console.log(`Saldo atual: ${conta.saldo}`);
-            break;
-        case 2:
-            const valorSaque = +prompt("Digite o valor do saque: ");
-            conta.saque(valorSaque);
-            console.log(`Saque realizado. Saldo atual: ${conta.saldo}`);
-            break;
-        case 3:
-            const valorDeposito = +prompt("Digite o valor do depósito: ");
-            conta.deposito(valorDeposito);
-            console.log(`Depósito realizado. Saldo atual: ${conta.saldo}`);
-            break;
-        case 4:
-            conta.impExtratos();
-            break;
-        case 0:
-            return;
-        default:
-            console.log("Opção inválida");
+        switch (escolha) {
+            case 1:
+                console.log(`Saldo atual: ${conta.saldo}`);
+                break;
+            case 2:
+                const valorSaque = +prompt("Digite o valor do saque: ");
+                conta.saque(valorSaque);
+                console.log(`Saque realizado. Saldo atual: ${conta.saldo}`);
+                break;
+            case 3:
+                const valorDeposito = +prompt("Digite o valor do depósito: ");
+                conta.deposito(valorDeposito);
+                console.log(`Depósito realizado. Saldo atual: ${conta.saldo}`);
+                break;
+            case 4:
+                conta.impExtratos();
+                break;
+            case 0:
+                return;
+            default:
+                console.log("Opção inválida");
+        }
+
     }
 }
 
 function menuGerente(gerente: Gerente<PF | PJ>): void {
-    console.log("Menu Gerente:");
-    console.log("1 - Adicionar Conta");
-    console.log("2 - Remover Conta");
-    console.log("3 - Consultar todas as contas");
-    console.log("4 - Consultar conta específica");
-    console.log("0 - Sair");
+    while (true) {
+        console.log("Menu Gerente:");
+        console.log("1 - Adicionar Conta");
+        console.log("2 - Remover Conta");
+        console.log("3 - Consultar todas as contas");
+        console.log("4 - Consultar conta específica");
+        console.log("0 - Sair");
 
-    const escolha = +prompt("Digite a opção desejada: ");
+        const escolha = +prompt("Digite a opção desejada: ");
 
-    switch (escolha) {
-        case 1:
-            const tipoConta = prompt("Digite o tipo de conta (PF ou PJ): ");
-            const nome = prompt("Digite o nome do titular: ");
-            const usuario = prompt("Digite o nome de usuário: ");
-            const senha = prompt("Digite a senha: ");
-            const numeroContaNova = +prompt("Digite o número da conta: "); // Renomeei para numeroContaNova
-            const saldo = +prompt("Digite o saldo inicial: ");
-            const documento = tipoConta === "PF" ? +prompt("Digite o CPF: ") : +prompt("Digite o CNPJ: ");
-            const extrato = new Extrato();
+        switch (escolha) {
+            case 1:
+                const tipoConta = prompt("Digite o tipo de conta (PF ou PJ): ");
+                const nome = prompt("Digite o nome do titular: ");
+                const usuario = prompt("Digite o nome de usuário: ");
+                const senha = prompt("Digite a senha: ");
+                const numeroContaNova = +prompt("Digite o número da conta: "); // Renomeei para numeroContaNova
+                const saldo = +prompt("Digite o saldo inicial: ");
+                const documento = tipoConta === "PF" ? +prompt("Digite o CPF: ") : +prompt("Digite o CNPJ: ");
+                const extrato = new Extrato();
 
-            if (tipoConta === "PF") {
-                const novaConta = new PF(nome, usuario, senha, numeroContaNova, saldo, extrato, documento);
-                gerente.addConta(novaConta);
-                contas[numeroContaNova] = novaConta;
-            } else if (tipoConta === "PJ") {
-                const novaConta = new PJ(nome, usuario, senha, numeroContaNova, saldo, extrato, documento);
-                gerente.addConta(novaConta);
-                contas[numeroContaNova] = novaConta;
-            } else {
-                console.log("Tipo de conta inválido.");
-            }
-            break;
-        case 2:
-            const numeroRemover = +prompt("Digite o número da conta a ser removida: ");
-            gerente.removeConta(numeroRemover);
-            delete contas[numeroRemover];
-            console.log(`Conta ${numeroRemover} removida.`);
-            break;
-        case 3:
-            gerente.impTodasContas();
-            break;
-        case 4:
-            const numeroContaConsulta = +prompt("Digite o número da conta: "); // Renomeei para numeroContaConsulta
-            gerente.impConta(numeroContaConsulta);
-            break;
-        case 0:
-            return;
-        default:
-            console.log("Opção inválida");
+                if (tipoConta === "PF") {
+                    const novaConta = new PF(nome, usuario, senha, numeroContaNova, saldo, extrato, documento);
+                    gerente.addConta(novaConta);
+                    contas[numeroContaNova] = novaConta;
+                } else if (tipoConta === "PJ") {
+                    const novaConta = new PJ(nome, usuario, senha, numeroContaNova, saldo, extrato, documento);
+                    gerente.addConta(novaConta);
+                    contas[numeroContaNova] = novaConta;
+                } else {
+                    console.log("Tipo de conta inválido.");
+                }
+                break;
+            case 2:
+                const numeroRemover = +prompt("Digite o número da conta a ser removida: ");
+                gerente.removeConta(numeroRemover);
+                delete contas[numeroRemover];
+                console.log(`Conta ${numeroRemover} removida.`);
+                break;
+            case 3:
+                gerente.impTodasContas();
+                break;
+            case 4:
+                const numeroContaConsulta = +prompt("Digite o número da conta: "); // Renomeei para numeroContaConsulta
+                gerente.impConta(numeroContaConsulta);
+                break;
+            case 0:                
+                return;
+            default:
+                console.log("Opção inválida");
+        }
     }
+
 }
 
 
