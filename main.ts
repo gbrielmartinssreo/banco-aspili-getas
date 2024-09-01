@@ -122,17 +122,39 @@ function menuGerente(gerente: Gerente<PF | PJ>): void {
 
     switch (escolha) {
         case 1:
-            // Implementar adicionar conta
+            const tipoConta = prompt("Digite o tipo de conta (PF ou PJ): ");
+            const nome = prompt("Digite o nome do titular: ");
+            const usuario = prompt("Digite o nome de usuário: ");
+            const senha = prompt("Digite a senha: ");
+            const numeroContaNova = +prompt("Digite o número da conta: "); // Renomeei para numeroContaNova
+            const saldo = +prompt("Digite o saldo inicial: ");
+            const documento = tipoConta === "PF" ? +prompt("Digite o CPF: ") : +prompt("Digite o CNPJ: ");
+            const extrato = new Extrato();
+
+            if (tipoConta === "PF") {
+                const novaConta = new PF(nome, usuario, senha, numeroContaNova, saldo, extrato, documento);
+                gerente.addConta(novaConta);
+                contas[numeroContaNova] = novaConta;
+            } else if (tipoConta === "PJ") {
+                const novaConta = new PJ(nome, usuario, senha, numeroContaNova, saldo, extrato, documento);
+                gerente.addConta(novaConta);
+                contas[numeroContaNova] = novaConta;
+            } else {
+                console.log("Tipo de conta inválido.");
+            }
             break;
         case 2:
-            // Implementar remover conta
+            const numeroRemover = +prompt("Digite o número da conta a ser removida: ");
+            gerente.removeConta(numeroRemover);
+            delete contas[numeroRemover];
+            console.log(`Conta ${numeroRemover} removida.`);
             break;
         case 3:
             gerente.impTodasContas();
             break;
         case 4:
-            const numeroConta = +prompt("Digite o número da conta: ");
-            gerente.impConta(numeroConta);
+            const numeroContaConsulta = +prompt("Digite o número da conta: "); // Renomeei para numeroContaConsulta
+            gerente.impConta(numeroContaConsulta);
             break;
         case 0:
             return;
@@ -140,6 +162,7 @@ function menuGerente(gerente: Gerente<PF | PJ>): void {
             console.log("Opção inválida");
     }
 }
+
 
 do {
     console.log("-------------------------------------\n" +

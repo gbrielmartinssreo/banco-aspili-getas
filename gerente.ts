@@ -74,7 +74,14 @@ export class Gerente <C extends PF|PJ> implements Ilogin {
         this._contaSupervisao.push(conta);
     }
 
-    public removeConta(conta:C):void{
-        this._contaSupervisao.pop();
+    public removeConta(numeroConta: number): void {
+        const indice = this.findIndiceConta(numeroConta);
+        if (indice !== -1) {
+            this._contaSupervisao.splice(indice, 1);
+            console.log(`Conta número ${numeroConta} removida.`);
+        } else {
+            console.log("Conta não encontrada.");
+        }
     }
+
 }
