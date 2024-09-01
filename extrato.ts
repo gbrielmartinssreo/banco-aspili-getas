@@ -1,18 +1,18 @@
 export class Extrato {
-    private transacoes: { tipo: string, valor: number }[] = [];
+    private transacoes: { tipo: string, valor: number,saldoAnt:number }[] = [];
 
-    public registrarTransacao(tipo: string, valor: number,saldo:number): number {
+    public registrarTransacao(tipo: string, valor: number,saldoAnt:number): number {
         if (tipo === 'saque') {
-            saldo -= valor;
+            saldoAnt -= valor;
         } else if (tipo === 'deposito') {
-            saldo += valor;
+            saldoAnt += valor;
         }
-        this.transacoes.push({ tipo, valor });
+        this.transacoes.push({ tipo, valor, saldoAnt});
 
-        return saldo;
+        return saldoAnt;
     }
 
-    public obterHistoricoTransacoes(): { tipo: string, valor: number }[] {
+    public obterHistoricoTransacoes(): { tipo: string, valor: number}[] {
         return this.transacoes;
     }
 }

@@ -69,6 +69,7 @@ export abstract class Conta implements Ilogin {
         for(let i=0;i<vet.length;i++){
             console.log(vet[i]);
         }
+        console.log(`Saldo atual: ${this._saldo}`)
     }
 
     public saque(valor:number):void{
