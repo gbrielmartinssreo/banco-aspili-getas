@@ -7,20 +7,21 @@ import promptSync from 'prompt-sync'; // importa um módulo que captura entradas
 
 const prompt = promptSync(); // cria uma instância do prompt-sync
 
-// Simulação de um banco de dados
 // Criação de contas
-const contaPF1 = new PF("João Silva", "joao.silva", "senha123", 1, 1000,new Extrato(), 12345678901);
-const contaPJ1 = new PJ("Empresa X", "empresa.x", "senha456", 2, 1500,new Extrato(), 12345678000199);
+const extratoPF = new Extrato();
+const contaPF1 = new PF("João Silva", "joao.silva", "senha123", 1, 1000, extratoPF, 12345678901);
+
+const extratoPJ = new Extrato();
+const contaPJ1 = new PJ("Empresa X", "empresa.x", "senha456", 2, 1500, extratoPJ, 12345678000199);
 
 // Criação de gerentes
-const gerente1 = new Gerente<PF|PJ>("Ana Costa", "ana.costa", "senhaGerente", 987654321);
+const gerente1 = new Gerente<PF | PJ>("Ana Costa", "ana.costa", "senhaGerente", 987654321);
 gerente1.addConta(contaPF1); // Adiciona a conta PF para o gerente
-const gerente2 = new Gerente<PF|PJ>("Carlos Lima", "carlos.lima", "senhaGerente2", 123456789);
 
+const gerente2 = new Gerente<PF | PJ>("Carlos Lima", "carlos.lima", "senhaGerente2", 123456789);
 gerente2.addConta(contaPJ1); // Adiciona a conta PJ para o gerente
 
 // Instanciação dos objetos para a simulação
-
 const contas: { [numeroConta: number]: Conta } = {
     1: contaPF1,
     2: contaPJ1
@@ -39,7 +40,7 @@ function loginCliente(): void {
     for (const conta of Object.values(contas)) {
         if (conta.usuario === usuario && conta.verificarSenha(senha)) {
             console.log("Login bem-sucedido como Cliente");
-            menuCliente();
+            menuCliente(conta);
             return;
         }
     }
@@ -59,7 +60,7 @@ function loginGerente(): void {
     console.log("Usuário ou senha incorretos.");
 }
 
-function menuCliente(): void {
+function menuCliente(conta: Conta): void {
     console.log("Menu Cliente:");
     console.log("1 - Consultar saldo");
     console.log("2 - Realizar saque");
@@ -71,16 +72,20 @@ function menuCliente(): void {
 
     switch (escolha) {
         case 1:
-            // Implementar consulta de saldo
+            console.log(`Saldo atual: ${conta.saldo}`);
             break;
         case 2:
-            // Implementar saque
+            const valorSaque = +prompt("Digite o valor do saque: ");
+            conta.saque(valorSaque);
+            console.log(`Saque realizado. Saldo atual: ${conta.saldo}`);
             break;
         case 3:
-            // Implementar depósito
+            const valorDeposito = +prompt("Digite o valor do depósito: ");
+            conta.deposito(valorDeposito);
+            console.log(`Depósito realizado. Saldo atual: ${conta.saldo}`);
             break;
         case 4:
-            // Implementar ver extratos
+            conta.impExtratos();
             break;
         case 0:
             return;

@@ -60,7 +60,7 @@ export abstract class Conta implements Ilogin {
     }
 
     private addExtrato(tipo:string,valor:number):void{
-        this._extrato.registrarTransacao(tipo,valor,this._saldo);
+        this._saldo=this._extrato.registrarTransacao(tipo,valor,this._saldo);
     }
 
     public impExtratos():void{
@@ -71,11 +71,11 @@ export abstract class Conta implements Ilogin {
         }
     }
 
-    protected saque(valor:number):void{
+    public saque(valor:number):void{
         this.addExtrato("saque",valor);
     }
 
-    protected deposito(valor:number):void{
+    public deposito(valor:number):void{
         this.addExtrato("deposito",valor);
     }
 }
