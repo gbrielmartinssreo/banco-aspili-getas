@@ -7,19 +7,30 @@ import promptSync from 'prompt-sync'; // importa um módulo que captura entradas
 
 const prompt = promptSync(); // cria uma instância do prompt-sync
 
-// Criação de contas
-const extratoPF = new Extrato();
-const contaPF1 = new PF("João Silva", "joao.silva", "senha123", 1, 1000, extratoPF, 12345678901);
+let contaPF1:PF|undefined;
+let contaPJ1:PJ|undefined;
 
-const extratoPJ = new Extrato();
-const contaPJ1 = new PJ("Empresa X", "empresa.x", "senha456", 2, 1500, extratoPJ, 12345678000199);
+// Criação de contas
+try {
+    contaPF1 = new PF("João Silva", "joao.silva", "senha123", 1, 1000, new Extrato(), 12345678901);
+}
+catch (erro:any){
+    console.log(erro.message);
+}
+
+try {
+    contaPJ1 = new PJ("Empresa X", "empresa.x", "senha456", 2, 1500, new Extrato(), 12345678000199);
+}
+catch (erro:any){
+    console.log(erro.message);
+}
 
 // Criação de gerentes
 const gerente1 = new Gerente<PF | PJ>("Ana Costa", "ana.costa", "senhaGerente", 987654321);
-gerente1.addConta(contaPF1); // Adiciona a conta PF para o gerente
+if(contaPF1)gerente1.addConta(contaPF1); // Adiciona a conta PF para o gerente
 
 const gerente2 = new Gerente<PF | PJ>("Carlos Lima", "carlos.lima", "senhaGerente2", 123456789);
-gerente2.addConta(contaPJ1); // Adiciona a conta PJ para o gerente
+if(contaPJ1)gerente2.addConta(contaPJ1); // Adiciona a conta PJ para o gerente
 
 // Instanciação dos objetos para a simulação
 const contas: { [numeroConta: number]: Conta } = {
