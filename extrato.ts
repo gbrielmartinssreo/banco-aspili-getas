@@ -1,5 +1,5 @@
 export class Extrato {
-    private transacoes: { tipo: string, valor: number,saldoAnt:number }[] = [];
+    private transacoes: {tipo: string, valor: number, saldoAnt:number }[] = [];
 
     public registrarTransacao(tipo: string, valor: number,saldoAnt:number): number {
         if (tipo === 'saque') {
