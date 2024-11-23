@@ -1,16 +1,16 @@
-import { Conta } from "./conta";
-import { Extrato } from "./extrato";
-import { Gerente } from "./gerente";
-import { PF } from "./pf";
-import { PJ } from "./pj";
-import promptSync from 'prompt-sync'; // importa um módulo que captura entradas do usuário
+import { Conta } from "./services/conta";
+import { Extrato } from "./services/extrato";
+import { Gerente } from "./services/gerente";
+import { PF } from "./services/pf";
+import { PJ } from "./services/pj";
+import promptSync from 'prompt-sync';
 
-const prompt = promptSync(); // cria uma instância do prompt-sync
+const prompt = promptSync(); 
 
 let contaPF1: PF | undefined;
 let contaPJ1: PJ | undefined;
 
-// Criação de contas
+
 try {
     contaPF1 = new PF("João Silva", "joao.silva", "senha123", 1, 1000, new Extrato(), 12345678901);
 }
@@ -27,14 +27,13 @@ catch (erro: any) {
     process.exit(0);
 }
 
-// Criação de gerentes
-const gerente1 = new Gerente<PF | PJ>("Ana Costa", "ana.costa", "senhaGerente", 987654321);
-gerente1.addConta(contaPF1); // Adiciona a conta PF para o gerente
-gerente1.addConta(contaPJ1); // Adiciona a conta PJ para o gerente
-const gerente2 = new Gerente<PF | PJ>("Carlos Lima", "carlos.lima", "senhaGerente2", 123456789);
-gerente2.addConta(contaPJ1); // Adiciona a conta PJ para o gerente
 
-// Instanciação dos objetos para a simulação
+const gerente1 = new Gerente<PF | PJ>("Ana Costa", "ana.costa", "senhaGerente", 987654321);
+gerente1.addConta(contaPF1); 
+gerente1.addConta(contaPJ1); 
+const gerente2 = new Gerente<PF | PJ>("Carlos Lima", "carlos.lima", "senhaGerente2", 123456789);
+gerente2.addConta(contaPJ1); 
+
 
 const contas: { [numeroConta: number]: Conta } = {
     1: contaPF1,
@@ -48,7 +47,6 @@ const gerentes: { [usuario: string]: Gerente<PF | PJ> } = {
     "carlos.lima": gerente2
 };
 
-// Funções de login e menus
 function loginCliente(): void {
     const usuario = prompt("Digite o usuário: ");
     const senha = prompt("Digite a senha: ");
@@ -130,7 +128,7 @@ function menuGerente(gerente: Gerente<PF | PJ>): void {
                 const nome = prompt("Digite o nome do titular: ");
                 const usuario = prompt("Digite o nome de usuário: ");
                 const senha = prompt("Digite a senha: ");
-                const numeroContaNova = +prompt("Digite o número da conta: "); // Renomeei para numeroContaNova
+                const numeroContaNova = +prompt("Digite o número da conta: ");
                 const saldo = +prompt("Digite o saldo inicial: ");
                 const documento = tipoConta === "PF" ? +prompt("Digite o CPF: ") : +prompt("Digite o CNPJ: ");
                 const extrato = new Extrato();
@@ -157,7 +155,7 @@ function menuGerente(gerente: Gerente<PF | PJ>): void {
                 gerente.impTodasContas();
                 break;
             case 4:
-                const numeroContaConsulta = +prompt("Digite o número da conta: "); // Renomeei para numeroContaConsulta
+                const numeroContaConsulta = +prompt("Digite o número da conta: ");
                 gerente.impConta(numeroContaConsulta);
                 break;
             case 0:                
