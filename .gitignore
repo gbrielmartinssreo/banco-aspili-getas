@@ -1,8 +1,2 @@
-# Project exclude paths
-/conta.js
-/extrato.js
-/gerente.js
-/login.js
-/main.js
-/pf.js
-/pj.js*.js
+*.js
+node_modules/

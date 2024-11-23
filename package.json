@@ -1,11 +1,17 @@
 {
+  "name": "sistemaBancario",
+  "version": "1.0.0",
   "dependencies": {
-    "prompt-sync": "^4.2.0",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.7.2"
+    "prompt-sync": "^4.2.0"
   },
   "devDependencies": {
     "@types/node": "^22.5.2",
-    "@types/prompt-sync": "^4.2.3"
+    "@types/prompt-sync": "^4.2.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsc --esModuleInterop ./src/main.ts && node ./src/main.js"
   }
 }
