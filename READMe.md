@@ -45,7 +45,7 @@ Este projeto foi desenvolvido utilizando **TypeScript** e a biblioteca **prompt-
 
 ---
 
-# Backlog
+## Backlog
 O backlog completo está disponível [aqui](https://gabrielmilgrau.notion.site/8cf3a4b0797e41b7a8cd3b4251b2bc6f?v=56891590274c405393cd70dc49e8946b).
 
 ## 🚀 Como Usar
