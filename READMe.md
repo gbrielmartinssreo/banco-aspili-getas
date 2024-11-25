@@ -76,14 +76,6 @@ Após a execução do programa, o menu principal será exibido no terminal. Voc�
 
 ---
 
-## 💻 Tecnologias
-
-Este projeto foi desenvolvido utilizando as seguintes tecnologias:
-- **TypeScript**: Para garantir tipagem e robustez no código.
-- **prompt-sync**: Biblioteca para captura de entrada do usuário via terminal.
-
----
-
 ## 👤 Sobre os Autores
 
 Este projeto foi criado por [Gabriel Martins de Morais](https://github.com/gbrielmartinssreo), [Maria Vittória Sousa Rodrigues Palma](https://github.com/m4vi), [Gabriel Nodari Pozer](https://github.com/Nodarixt4),  [Pedro Henrique](https://github.com/pedrohgreis), [Thiago Vinicius](https://github.com/ThiagoSobieski).
