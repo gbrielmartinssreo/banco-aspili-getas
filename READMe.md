@@ -18,8 +18,7 @@ Este projeto foi desenvolvido utilizando **TypeScript** e a biblioteca **prompt-
 2. [Backlog](#-backlog)
 3. [Como Usar](#-como-usar)
 4. [Funcionalidades](#-funcionalidades)
-5. [Tecnologias](#-tecnologias)
-6. [Sobre o Autor](#-sobre-o-autor)
+5. [Sobre os Autores](#-sobre-os-autores)
 
 ---
 
